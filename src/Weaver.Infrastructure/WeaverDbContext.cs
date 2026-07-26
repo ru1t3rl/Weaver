@@ -1,16 +1,13 @@
 using Microsoft.EntityFrameworkCore;
-using Weaver.Domain.Common.ServiceOptions;
 using Weaver.Domain.Entities;
 
 namespace Weaver.Infrastructure;
 
 public class WeaverDbContext : DbContext
 {
-    public DbSet<Service> Services { get; set; }
-    public DbSet<ServiceOption> ServiceOptions { get; set; }
-    public DbSet<ServiceTemplate> ServicesTemplates { get; set; }
-    public DbSet<ServiceTemplateOption> ServiceTemplateOptions { get; set; }
-
+    public DbSet<ComposeProject> Projects { get; init; }
+    public DbSet<Tag> Tags { get; init; }
+    
     public WeaverDbContext(DbContextOptions<WeaverDbContext> options) : base(options)
     {
     }

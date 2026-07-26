@@ -1,4 +1,5 @@
 import { AppRouter } from '@weaver/app';
+import { ApiProvider } from '@weaver/custom-compose'
 import { DockerProvider } from '@weaver/docker';
 import { environment } from '@weaver/shared';
 import { ThemeProvider } from '@weaver/styling';
@@ -17,9 +18,11 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <DockerProvider dockerApiAddress={environment.dockerApiAddress}>
-          <RouterProvider router={AppRouter} />
-        </DockerProvider>
+        <ApiProvider apiAddress={environment.apiAddress}>
+          <DockerProvider dockerApiAddress={environment.dockerApiAddress}>
+            <RouterProvider router={AppRouter} />
+          </DockerProvider>
+        </ApiProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );

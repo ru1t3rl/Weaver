@@ -10,4 +10,8 @@
       <ProjectReference Include="..\Weaver.Domain\Weaver.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Migrations\" />
+    </ItemGroup>
+
 </Project>

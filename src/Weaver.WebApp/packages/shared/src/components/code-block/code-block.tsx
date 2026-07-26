@@ -1,6 +1,5 @@
 import { useTheme } from '@weaver/styling';
 import { Card, Flex, Typography } from 'antd';
-import { CardStylesType } from 'antd/es/card/Card';
 import { LuCode } from 'react-icons/lu';
 import styles from './code-block.module.scss';
 
@@ -16,7 +15,6 @@ interface CodeBlockProps {
   maxWidth?: Width;
   height?: Height;
   className?: string;
-  style?: CardStylesType;
 }
 
 export const CodeBlock: React.FC<CodeBlockProps> = (props: CodeBlockProps) => {
@@ -28,8 +26,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = (props: CodeBlockProps) => {
     height = '400px',
     width = '50vw',
     maxWidth,
-    className,
-    style
+    className
   } = props;
   const lines = content.split('\n');
   const { theme } = useTheme();
@@ -46,7 +43,6 @@ export const CodeBlock: React.FC<CodeBlockProps> = (props: CodeBlockProps) => {
           width: width,
           maxWidth: maxWidth
         },
-        ...style,
       }}
     >
       <div

@@ -1,0 +1,29 @@
+.container {
+    position: relative;
+
+    align-self: center;
+    justify-self: center;
+
+    height: 80dvh;
+    width: 75dvw;
+    max-width: 750px;
+}
+
+.button-container {
+    position: absolute;
+    bottom: 2em;
+    right: 2em;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+
+    gap: 0.5em;
+}
+
+.inputs {
+
+    display: flex !important;
+    flex-direction: column;
+    gap: 1em !important;
+}
