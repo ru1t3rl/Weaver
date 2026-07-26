@@ -31,18 +31,22 @@ var dockerApiService = builder
         url => { url.Url = "/docs"; }
     );
 
+var appEnvPrefix = builder.AddParameter("AppEnvPrefix", secret: false);
+
 builder
-    .AddBunApp("webapp", "../Weaver.WebApp", "dev", true)
+    .AddViteApp("webapp-vite", "../Weaver.WebApp", "dev")
     .WithApiClientGenerator("../Weaver.WebApp/packages/shared/", displayName: "Generate WebApi Client")
     .WithApiClientGenerator("../Weaver.WebApp/packages/docker/", displayName: "Generate Docker Api Client")
-    .WithBunPackageInstallation()
-    .WithReference(apiService)
+    .WithBun()
     .WaitFor(apiService)
-    .WithReference(dockerApiService)
+    .WithReference(apiService)
     .WaitFor(dockerApiService)
-    .PublishAsDockerFile()
+    .WithReference(dockerApiService)
+    .WithEnvironment("VITE_API_ADDRESS", apiService.GetEndpoint("http"))
+    .WithEnvironment("VITE_DOCKER_API_ADDRESS", dockerApiService.GetEndpoint("http"))
+    .WithEnvironment("APP_ENV_PREFIX", appEnvPrefix)
     .WithHttpEndpoint(4200, env: "PORT")
     .WithExternalHttpEndpoints()
-    .WithEnvironment("APP_ENV_PREFIX", "WEAVER_");
+    .PublishAsDockerFile();
 
 builder.Build().Run();
