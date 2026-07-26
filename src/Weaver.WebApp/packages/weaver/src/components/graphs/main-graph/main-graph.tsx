@@ -4,21 +4,18 @@ import '@xyflow/react/dist/style.css';
 import { useMemo } from 'react';
 import { LuPlus } from 'react-icons/lu';
 import { Outlet } from 'react-router';
-import { useServiceTemplateSearchModal } from '../../../hooks';
 import { NotificationProvider } from '../../../providers';
 import { ContainerInspector } from '../../inspectors/container-inspector/container-inspector';
 import styles from './main-graph.module.scss';
 
 export function InternalMainGraph() {
-  const { show: showServiceModal } = useServiceTemplateSearchModal();
-
   const { close, show } = useContextMenu();
   const { nodes, edges, resolveCollision, onNodesChange, onEdgesChange } = useGraph();
 
   const items = useMemo<ContextMenuItem[]>(() => [
     {
       label: 'Add service',
-      onClick: () => showServiceModal,
+      onClick: () => {},
       icon: <LuPlus />,
     },
   ], []);

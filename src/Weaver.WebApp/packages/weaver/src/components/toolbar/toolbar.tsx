@@ -4,7 +4,7 @@ import styles from './toolbar.module.scss';
 import { useModals } from '../../hooks';
 
 export function Toolbar() {
-  const { showAddServiceTemplate, showCreateServiceTemplate } = useModals();
+  const { showCreateServiceTemplate } = useModals();
 
   const menuItems: MenuProps['items'] = [
     {
@@ -13,7 +13,6 @@ export function Toolbar() {
       key: 'create-service-template',
       onClick: showCreateServiceTemplate,
     },
-    { label: 'Add Service Template', icon: <LuPlus />, key: 'add-service', onClick: showAddServiceTemplate },
   ];
 
   return (
@@ -23,7 +22,6 @@ export function Toolbar() {
       </Dropdown>
       <Button shape='round' icon={<LuFolderOpen />} />
       <Button shape='round' icon={<LuSave />} />
-      <Button shape='round' icon={<LuPlus />} onClick={showAddServiceTemplate} />
     </Flex>
   );
 }
